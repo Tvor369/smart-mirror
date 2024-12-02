@@ -69,17 +69,17 @@ Set DOM Elements
 // Set the month
 month.textContent = allTheMonths[gotMonth];
 // Set day of the month
-dayOfMonth.textContent = gotDayOfMonth;
+dayOfMonth.textContent = gotDayOfMonth.toString();
 // Set the year
-year.textContent = gotYear;
+year.textContent = gotYear.toString();
 // Set the day of the week
 dayOfWeek.textContent = allTheDays[gotDayOfWeek];
 </script>
 
 <!-- HTML -->
-<section class="date">
-    <h1>Date</h1>
-    <time>
+<section class="date card glass w-96 h-1/4">
+    <!-- <h1>Date</h1> -->
+    <time class="font-mono text-2xl text-center">
       <data class="month">Month</data>
       <data class="dayOfMonth">00</data>, <data class="year">0000</data> -
       <data class="dayOfWeek">SMTWTFS</data>

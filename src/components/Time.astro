@@ -54,11 +54,11 @@ const theClockApp = () => {
   Set DOM Elements
   ************/
   // Set the hours
-  hours.textContent = gotHours;
+  hours.textContent = gotHours.toString();
   // Set the minutes
-  minutes.textContent = gotMinutes;
+  minutes.textContent = gotMinutes.toString();
   // Set the seconds
-  seconds.textContent = gotSeconds;
+  seconds.textContent = gotSeconds.toString();
   // Set AM or PM
   amOrPM.textContent = gotAmOrPM;
     
@@ -71,10 +71,11 @@ const theClockApp = () => {
   setInterval(theClockApp, 1000);
 </script>
 
-<section class="time card glass w-96">
-    <h1>Time</h1>
-    <time>
-      <data class="hours">HH</data> : <data class="minutes">MM</data> :
+<section class="time card glass w-96 h-1/4">
+    <!-- <h1>Time</h1> -->
+    <time class="font-mono text-3xl text-center">
+      <data class="hours">HH</data> : 
+      <data class="minutes">MM</data> :
       <data class="seconds">SS</data>
       <data class="amOrPM">AM/PM</data>
     </time>

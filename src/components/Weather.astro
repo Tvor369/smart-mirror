@@ -4,7 +4,6 @@
 <script>
 // Get API key from server side .ENV file
 const APIKEY = (await import.meta.env.PUBLIC_WEATHER_API) as string;
-console.log(APIKEY);
 
 // API endpoint URL
 const queryEndpoint = 'https://api.openweathermap.org/data/2.5/weather';

@@ -8,12 +8,13 @@ const APIKEY = (await import.meta.env.PUBLIC_WEATHER_API) as string;
 // API endpoint URL
 const queryEndpoint = 'https://api.openweathermap.org/data/2.5/weather';
 // City
-const queryCity = 'Spokane';
+var queryCity = 'Spokane';
 // Units for Farenheit
 const queryUnits = 'imperial';
 
 // URL query string
-const url = `${queryEndpoint}?q=${queryCity}&appid=${APIKEY}&units=${queryUnits}`;
+var url = `${queryEndpoint}?q=${queryCity}&appid=${APIKEY}&units=${queryUnits}`;
+console.log(url);
 
 // Get DOM Elements
 const city = document.querySelector('.city');
@@ -35,20 +36,82 @@ fetch(url)
     city.textContent = data.name; 
     temp.textContent = data.main.temp;
 
-    icon.setAttribute('src', `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`)
+    icon.setAttribute('src', `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
   
 });
+
+    // Get the DOM Elements
+    var submit = document.querySelector(".submit");
+
+    async function handleClick() {
+
+      // Save the last City
+      var lastCity = city.textContent;
+
+      // Get the value of the input
+      var location = (document.querySelector(".locationInput") as HTMLInputElement).value;
+      queryCity = location;
+      console.log(queryCity);
+
+      url = `${queryEndpoint}?q=${queryCity}&appid=${APIKEY}&units=${queryUnits}`;
+      console.log(url);
+
+      fetch(url)
+      .then( response => response.json() )
+      .then( data => {
+
+        // Check-check: Is data good? 
+        console.log( data );
+        
+        // Get Container for Weather   
+        const weatherContainer = document.querySelector('.weather');
+          
+          // Set DOM Elements
+          city.textContent = data.name; 
+          temp.textContent = data.main.temp;
+
+          icon.setAttribute('src', `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
+        
+      }).catch( error => {
+        // Keep the last city
+        city.textContent = lastCity;
+        console.log('Error: city not found', error);
+      });
+            
+      console.log(city);
+    }
+
+    submit.addEventListener("click", handleClick);
+
 </script>
 
 
 <!-- Weather -->
-<section class="weather card glass w-96 h-3/4">
+<section class="weather card glass w-96 h-auto p-4">
 
       <!-- <h1>Weather</h1> -->
     <div class=" font-mono text-3xl text-center">
       <data class="city">City</data>
       <data class="temp">Temp</data> F°
       <img class="icon place-self-center " src="https://via.placeholder.com/150" alt="Placeholder">
+
+      <!-- Open the modal using ID.showModal() method -->
+      <button class="btn" onclick="setLocation.showModal()">Edit</button>
+      <dialog id="setLocation" class="modal">
+        <div class="modal-box card glass">
+          <h2 class="text-3xl">Set Location</h2>
+          <div class="justify-self-center p-5">
+            <!-- <p class="py-4">Press ESC key or click the button below to close</p> -->
+            <input type="text" placeholder=" Enter City..." class="locationInput input-bordered w-full max-w-xs" />
+          </div>
+          <div class="modal-action">
+            <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+              <button id="submit" class="submit btn">Submit</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
       
 </section>

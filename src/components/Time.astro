@@ -46,7 +46,7 @@ const theClockApp = () => {
   // Get minutes
   const minutes = document.querySelector(".minutes");
   // Get seconds
-  const seconds = document.querySelector(".seconds");
+  //const seconds = document.querySelector(".seconds");
   // Get AM or PM
   const amOrPM = document.querySelector('.amOrPM');
   
@@ -58,7 +58,7 @@ const theClockApp = () => {
   // Set the minutes
   minutes.textContent = gotMinutes.toString();
   // Set the seconds
-  seconds.textContent = gotSeconds.toString();
+  //seconds.textContent = gotSeconds.toString();
   // Set AM or PM
   amOrPM.textContent = gotAmOrPM;
     
@@ -71,12 +71,12 @@ const theClockApp = () => {
   setInterval(theClockApp, 1000);
 </script>
 
-<section class="time card glass w-96 h-1/4 items-center">
+<section class="time card glass w-96 h-1/4 items-center" style="background-color: rgba(72, 72, 139, 0.5);">
     <!-- <h1>Time</h1> -->
-    <time class="font-mono text-3xl text-center">
+    <time class="font-mono text-5xl text-center">
       <data class="hours">HH</data> : 
-      <data class="minutes">MM</data> :
-      <data class="seconds">SS</data>
+      <data class="minutes">MM</data>
+      <!-- <data class="seconds">SS</data> -->
       <data class="amOrPM">AM/PM</data>
     </time>
 <section>

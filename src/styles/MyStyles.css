@@ -5,6 +5,7 @@ body {
 section {
     margin: 30px;
     justify-content: center;
+    background-color: rgba(72, 72, 139, 0.5);
 }
 
 .time{ 

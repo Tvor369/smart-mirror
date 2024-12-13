@@ -50,17 +50,34 @@ const gotDayOfWeek = dateNow.getDay();
 // Check-Check: Is the data correct? 
 console.log(gotMonth, gotDayOfMonth, gotYear, gotDayOfWeek);
 
+
+var ordinal = document.querySelector('.ordinal');
+
+// Add Ordinal to the day of the month
+function getOrdinal(n) {
+  let s = ["th", "st", "nd", "rd"],
+    v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
+}
+
+// Set the ordinal
+ordinal.textContent = getOrdinal(gotDayOfMonth);
+
+
+
+
 /************
 Get DOM Elements
 ************/
 // Get the month
 const month = document.querySelector(".month");
 // Get day of the month
-const dayOfMonth = document.querySelector(".dayOfMonth");
+//const dayOfMonth = document.querySelector(".dayOfMonth");
 // Get year
 const year = document.querySelector('.year');
 // Get Day of Week
 const dayOfWeek = document.querySelector('.dayOfWeek');
+
 
 
 /************
@@ -69,7 +86,7 @@ Set DOM Elements
 // Set the month
 month.textContent = allTheMonths[gotMonth];
 // Set day of the month
-dayOfMonth.textContent = gotDayOfMonth.toString();
+//dayOfMonth.textContent = gotDayOfMonth.toString();
 // Set the year
 year.textContent = gotYear.toString();
 // Set the day of the week
@@ -80,8 +97,10 @@ dayOfWeek.textContent = allTheDays[gotDayOfWeek];
 <section class="date card glass w-96 h-1/4" style="background-color: rgba(72, 72, 139, 0.5);">
     <!-- <h1>Date</h1> -->
     <time class="font-mono text-2xl text-center">
+      <data class="dayOfWeek">SMTWTFS</data> - 
       <data class="month">Month</data>
-      <data class="dayOfMonth">00</data>, <data class="year">0000</data> -
-      <data class="dayOfWeek">SMTWTFS</data>
+      <!-- <data class="dayOfMonth">00</data> -->
+       <data class="ordinal"></data>, <data class="year">0000</data>
+      
     </time>
   </section>

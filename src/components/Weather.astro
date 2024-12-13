@@ -20,6 +20,8 @@ console.log(url);
 const city = document.querySelector('.city');
 const temp = document.querySelector('.temp');
 const icon = document.querySelector('.icon');
+const desc = document.querySelector('.desc');
+const wind = document.querySelector('.wind');
 
 // Using fetch to get data
 fetch(url)
@@ -35,6 +37,8 @@ fetch(url)
     // Set DOM Elements
     city.textContent = data.name; 
     temp.textContent = data.main.temp;
+    desc.textContent = data.weather[0].description;
+    wind.textContent = data.wind.speed;
 
     icon.setAttribute('src', `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
   
@@ -69,8 +73,10 @@ fetch(url)
           // Set DOM Elements
           city.textContent = data.name; 
           temp.textContent = data.main.temp;
+          desc.textContent = data.weather[0].description;
+          wind.textContent = data.wind.speed;
 
-          icon.setAttribute('src', `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
+          icon.setAttribute('src', `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`);
         
       }).catch( error => {
         // Keep the last city
@@ -91,12 +97,15 @@ fetch(url)
 
       <!-- <h1>Weather</h1> -->
     <div class=" font-mono text-3xl text-center">
-      <data class="city">City</data>
-      <data class="temp">Temp</data> F°
       <img class="icon place-self-center " src="https://via.placeholder.com/150" alt="Placeholder">
+      <data class="city text-5xl">City</data> <br>
+      <data class="temp">Temp</data> F° <br>
+      <data class="desc">Description</data> <br> Wind:
+      <data class="wind">Wind:</data> mph <br>
+      
 
       <!-- Open the modal using ID.showModal() method -->
-      <button class="btn" onclick="setLocation.showModal()">Edit</button>
+      <button id="editBtn" class="btn" onclick="setLocation.showModal()">Edit</button>
       <dialog id="setLocation" class="modal">
         <div class="modal-box card glass">
           <h2 class="text-3xl">Set Location</h2>
